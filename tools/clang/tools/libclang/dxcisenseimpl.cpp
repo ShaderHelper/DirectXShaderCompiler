@@ -1625,6 +1625,12 @@ HRESULT DxcTranslationUnit::CodeCompleteAt(const char *fileName, unsigned line,
   if (FAILED(hr))
     return hr;
 
+  ::llvm::sys::fs::MSFileSystem *msfPtr;
+  IFT(CreateMSFileSystemForDisk(&msfPtr));
+  std::unique_ptr<::llvm::sys::fs::MSFileSystem> msf(msfPtr);
+
+  ::llvm::sys::fs::AutoPerThreadSystem pts(msf.get());
+  IFTLLVM(pts.error_code());
   CXCodeCompleteResults *results = clang_codeCompleteAt(
       m_tu, fileName, line, column, files, numUnsavedFiles, options);
 
