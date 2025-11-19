@@ -1047,6 +1047,10 @@ public:
           inputs.pVersionInfo = static_cast<IDxcVersionInfo *>(this);
 
           if (needsValidation) {
+            if(opts.IgnoreValidationError)
+            {
+              inputs.pDiag = nullptr;
+            }
             valHR = dxcutil::ValidateAndAssembleToContainer(inputs);
           } else {
             dxcutil::AssembleToContainer(inputs);

@@ -179,6 +179,7 @@ public:
   bool DefaultColMajor = false;           // OPT_Zpc
   bool DefaultRowMajor = false;           // OPT_Zpr
   bool DisableValidation = false;         // OPT_VD
+  bool IgnoreValidationError = false;     // OPT_ignore_validation_error
   unsigned OptLevel = 0;                  // OPT_O0/O1/O2/O3
   bool DisableOptimizations = false;      // OPT_Od
   bool AvoidFlowControl = false;          // OPT_Gfa
